@@ -1,11 +1,14 @@
 "use client";
 
 import React from "react";
-import * as darkTheme from "../ant-tokens/dark.json";
-import * as lightTheme from "../ant-tokens/light.json";
+import ContentContainer from "@/containers/CarouselContainer";
 
 const HomePage: React.FC = () => {
-  return <React.Fragment></React.Fragment>;
+  return (
+    <React.Fragment>
+      <ContentContainer />
+    </React.Fragment>
+  );
 };
 
 export default HomePage;
