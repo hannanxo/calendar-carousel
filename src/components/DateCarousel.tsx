@@ -8,14 +8,16 @@ import { isDateDisabled } from "@/utils/FormatUtils";
 
 const DateCarousel = ({
   datesToShow,
-  disabledDates,
+  offDays,
+  holidays,
   handleSelectDate,
   numCardsToShow,
   cardsToScroll,
   slider,
 }: {
   datesToShow: dayjs.Dayjs[];
-  disabledDates: string[];
+  offDays: string[];
+  holidays: (date: dayjs.Dayjs) => boolean;
   handleSelectDate: (date: dayjs.Dayjs) => void;
   numCardsToShow: number;
   cardsToScroll: number;
@@ -39,27 +41,36 @@ const DateCarousel = ({
         slidesToScroll={cardsToScroll}
         swipeToSlide
       >
-        {datesToShow.map((date, index) => (
-          <div>
+        {datesToShow.map((date, index) => {
+          const isHoliday = holidays(date);
+          return (
             <div
               key={index}
               onClick={() =>
-                !isDateDisabled(date, disabledDates) && handleSelectDate(date)
+                !isDateDisabled(date, offDays) &&
+                !isHoliday &&
+                handleSelectDate(date)
               }
             >
-              {isDateDisabled(date, disabledDates) && (
+              {isDateDisabled(date, offDays) && (
                 <div className={styles.dateBlockDisabled}>
                   {date.format("MMMM")}
                 </div>
               )}
-              {!isDateDisabled(date, disabledDates) && (
+              {!isDateDisabled(date, offDays) && !isHoliday && (
                 <div className={styles.dateBlock}>{date.format("MMMM")}</div>
+              )}
+
+              {isHoliday && (
+                <div className={styles.dateBlockHolidayDisabled}>
+                  {date.format("MMMM")}
+                </div>
               )}
               <div className={styles.dayText}>{date.format("DD")}</div>
               <div className={styles.weekdayText}>{date.format("dddd")}</div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </Carousel>
       <RightOutlined
         onClick={() => (slider.current ? slider.current.next() : null)}

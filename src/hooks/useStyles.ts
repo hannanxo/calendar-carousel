@@ -58,6 +58,13 @@ const useStyles = createStyles(({ css }) => ({
     color: #fff;
     border-radius: 4px;
   `,
+  dateBlockHolidayDisabled: css`
+    padding: 4px 10px;
+    margin-bottom: 8px;
+    background: green;
+    color: #fff;
+    border-radius: 4px;
+  `,
   dayText: css`
     font-size: 24px;
     font-weight: bold;

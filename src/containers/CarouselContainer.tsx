@@ -7,15 +7,18 @@ import dayjs from "dayjs";
 import { useRef } from "react";
 import useCarouselData from "@/hooks/useCalendar";
 import { formatDate, formatTime } from "@/utils/FormatUtils";
+import { generateDatesToShow } from "@/utils/GenerateDates";
 
 const { Panel } = Collapse;
 
 const CarouselContainer = ({
   numCardsToShow = 3,
   cardsToScroll = 1,
-  dateRange = 30,
-  disabledDates = ["Friday", "Saturday", "Sunday"],
-  timeFormat = 24,
+  datesCount = 40,
+  dateRange = ["11-23-2023", "01-01-2024"],
+  offDays = ["Friday", "Saturday", "Sunday"],
+  holidays = (date: dayjs.Dayjs) => false,
+  timeFormat = "hh:mm a",
   durationStep = 30,
   onDateChange = (date: dayjs.Dayjs) => {
     return;
@@ -29,9 +32,11 @@ const CarouselContainer = ({
 }: {
   numCardsToShow?: number;
   cardsToScroll?: number;
-  dateRange?: number;
-  disabledDates?: string[];
-  timeFormat?: number;
+  datesCount?: number;
+  dateRange?: [string, string];
+  offDays?: string[];
+  holidays?: (date: dayjs.Dayjs) => boolean;
+  timeFormat?: string;
   durationStep?: number;
   onDateChange?: (date: dayjs.Dayjs) => void;
   onTimeChange?: (time: dayjs.Dayjs | null) => void;
@@ -50,10 +55,7 @@ const CarouselContainer = ({
   const slider = useRef<CarouselRef>(null);
 
   // can also use a dynamic range approach
-  const datesToShow = [...Array(dateRange)].map((_, i) =>
-    dayjs().clone().add(i, "day")
-  );
-  const timePickerFormat = timeFormat === 12 ? "hh:mm a" : "HH:mm";
+  const datesToShow = generateDatesToShow(datesCount, dateRange);
 
   const handleSelectDate = (date: dayjs.Dayjs) => {
     setSelectedDate(date);
@@ -61,7 +63,7 @@ const CarouselContainer = ({
   };
 
   const handleSelectTime = (time: dayjs.Dayjs | null, timeString: string) => {
-    const newTime = time ? dayjs(timeString, timePickerFormat) : null;
+    const newTime = time ? dayjs(timeString, timeFormat) : null;
     setSelectedTime(newTime);
     onTimeChange(newTime); // Calling the callback prop
   };
@@ -83,22 +85,19 @@ const CarouselContainer = ({
       <Panel header="Date" key="1" extra={formatDate(selectedDate)}>
         <DateCarousel
           datesToShow={datesToShow}
-          disabledDates={disabledDates}
+          offDays={offDays}
+          holidays={holidays}
           handleSelectDate={handleSelectDate}
           numCardsToShow={numCardsToShow}
           cardsToScroll={cardsToScroll}
           slider={slider}
         />
       </Panel>
-      <Panel
-        header="Time"
-        key="2"
-        extra={formatTime(selectedTime, timePickerFormat)}
-      >
+      <Panel header="Time" key="2" extra={formatTime(selectedTime, timeFormat)}>
         <TimePicker
-          format={timePickerFormat}
+          format={timeFormat}
           style={{ minWidth: "100%", maxWidth: "100%" }}
-          value={selectedTime ? dayjs(selectedTime, timePickerFormat) : null}
+          value={selectedTime ? dayjs(selectedTime, timeFormat) : null}
           onChange={handleSelectTime}
         />
       </Panel>
