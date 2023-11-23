@@ -1,21 +1,35 @@
 import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button } from "antd";
+import React from "react";
 
-const DurationPicker = ({ duration, handleDurationChange }: { duration: number; handleDurationChange: (increment: number) => void }) => {
+const DurationPicker = ({
+  duration,
+  handleDurationChange,
+  durationStep,
+}: {
+  duration: number;
+  handleDurationChange: (increment: number) => void;
+  durationStep: number;
+}) => {
   return (
-    <>
+    <React.Fragment>
       <Button
         icon={<MinusOutlined />}
         style={{ borderRadius: "20px" }}
-        onClick={() => handleDurationChange(-30)} // Decrement by 30 secs
+        onClick={() => handleDurationChange(-durationStep)}
       />
-      <span style={{ margin: "20px" }}> {`${Math.floor(duration / 60)}:${(duration % 60).toString().padStart(2, "0")}`}</span>
+      <span style={{ margin: "20px" }}>
+        {" "}
+        {`${Math.floor(duration / 60)}:${(duration % 60)
+          .toString()
+          .padStart(2, "0")}`}
+      </span>
       <Button
         icon={<PlusOutlined />}
         style={{ borderRadius: "20px" }}
-        onClick={() => handleDurationChange(30)} // Increment by 30 secs
+        onClick={() => handleDurationChange(durationStep)}
       />
-    </>
+    </React.Fragment>
   );
 };
 

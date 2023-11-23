@@ -2,41 +2,115 @@ import DateCarousel from "@/components/DateCarousel";
 import DurationPicker from "@/components/DurationPicker";
 import useStyles from "@/hooks/useStyles";
 import { Collapse, TimePicker } from "antd";
+import { CarouselRef } from "antd/es/carousel";
 import dayjs from "dayjs";
-import { SetStateAction, useState } from "react";
+import { useRef } from "react";
+import useCarouselData from "@/hooks/useCalendar";
+import { formatDate, formatTime } from "@/utils/FormatUtils";
 
 const { Panel } = Collapse;
 
-const ContentContainer = () => {
+const CarouselContainer = ({
+  numCardsToShow = 3,
+  cardsToScroll = 1,
+  dateRange = 30,
+  disabledDates = ["Friday", "Saturday", "Sunday"],
+  timeFormat = 24,
+  durationStep = 30,
+  onDateChange,
+  onTimeChange,
+  onDurationChange,
+}: {
+  numCardsToShow?: number;
+  cardsToScroll?: number;
+  dateRange?: number;
+  disabledDates?: string[];
+  timeFormat?: number;
+  durationStep?: number;
+  onDateChange: (date: dayjs.Dayjs) => void;
+  onTimeChange: (time: dayjs.Dayjs | null) => void;
+  onDurationChange: (duration: number) => void;
+}) => {
+  const {
+    duration,
+    setDuration,
+    selectedDate,
+    setSelectedDate,
+    selectedTime,
+    setSelectedTime,
+  } = useCarouselData();
   const { styles } = useStyles();
-  const [duration, setDuration] = useState(120);
-  const [selectedDate, setSelectedDate] = useState(dayjs());
+
+  const slider = useRef<CarouselRef>(null);
+
+  // can also use a dynamic range approach
+  const datesToShow = [...Array(dateRange)].map((_, i) =>
+    dayjs().clone().add(i, "day")
+  );
+  const timePickerFormat = timeFormat === 12 ? "hh:mm a" : "HH:mm";
+
+  const handleSelectDate = (date: dayjs.Dayjs) => {
+    setSelectedDate(date);
+    onDateChange(date);
+  };
+
+  const handleSelectTime = (time: dayjs.Dayjs | null, timeString: string) => {
+    const newTime = time ? dayjs(timeString, timePickerFormat) : null;
+    setSelectedTime(newTime);
+    onTimeChange(newTime); // Calling the callback prop
+  };
 
   const handleDurationChange = (increment: number) => {
-    setDuration((prevDuration) => Math.max(0, prevDuration + increment));
+    const newDuration = Math.max(0, duration + increment);
+    setDuration(newDuration);
+    onDurationChange(newDuration);
   };
-
-  const datesToShow = [...Array(3)].map((_, i) => selectedDate.clone().add(i, "day"));
-
-  const handleSelectDate = (date: SetStateAction<dayjs.Dayjs>) => {
-    setSelectedDate(date);
-  };
-
-  // for showing the selected date or time on the uncollapsed bar. pass it to the extra prop on panels
-  const setDate = () => {};
-  const setTime = () => {};
 
   return (
-    <Collapse className={styles.styledCollapse} bordered={false} defaultActiveKey={["1"]} ghost expandIconPosition="end">
-      <Panel header="Date" key="1">
-        <DateCarousel datesToShow={datesToShow} handleSelectDate={handleSelectDate} selectedDate={selectedDate} />
+    <Collapse
+      className={styles.styledCollapse}
+      bordered={false}
+      defaultActiveKey={["0"]}
+      ghost
+      expandIconPosition="end"
+    >
+      <Panel header="Date" key="1" extra={formatDate(selectedDate)}>
+        <DateCarousel
+          datesToShow={datesToShow}
+          disabledDates={disabledDates}
+          handleSelectDate={handleSelectDate}
+          numCardsToShow={numCardsToShow}
+          cardsToScroll={cardsToScroll}
+          slider={slider}
+        />
       </Panel>
-      <Panel header="Time" key="2">
-        <TimePicker format="HH:mm" style={{ width: "300px" }} />
+      <Panel
+        header="Time"
+        key="2"
+        extra={formatTime(selectedTime, timePickerFormat)}
+      >
+        <TimePicker
+          format={timePickerFormat}
+          style={{ minWidth: "100%", maxWidth: "100%" }}
+          value={selectedTime ? dayjs(selectedTime, timePickerFormat) : null}
+          onChange={handleSelectTime}
+        />
       </Panel>
-      <Panel header="Duration" showArrow={false} collapsible="icon" extra={<DurationPicker duration={duration} handleDurationChange={handleDurationChange} />} key="3"></Panel>
+      <Panel
+        header="Duration"
+        showArrow={false}
+        collapsible="icon"
+        extra={
+          <DurationPicker
+            duration={duration}
+            durationStep={durationStep}
+            handleDurationChange={handleDurationChange}
+          />
+        }
+        key="3"
+      />
     </Collapse>
   );
 };
 
-export default ContentContainer;
+export default CarouselContainer;

@@ -1,12 +1,16 @@
 "use client";
 
 import React from "react";
-import ContentContainer from "@/containers/CarouselContainer";
+import CarouselContainer from "@/containers/CarouselContainer";
 
 const HomePage: React.FC = () => {
   return (
     <React.Fragment>
-      <ContentContainer />
+      <CarouselContainer
+        onDateChange={(date) => console.log(date.format("MMMM DD, YYYY"))}
+        onTimeChange={(time) => console.log(time?.format("hh:mm a"))}
+        onDurationChange={(duration) => console.log(duration)}
+      />
     </React.Fragment>
   );
 };
