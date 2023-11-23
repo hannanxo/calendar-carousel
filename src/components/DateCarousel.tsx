@@ -42,7 +42,6 @@ const DateCarousel = ({
         {datesToShow.map((date, index) => (
           <div>
             <div
-              className={styles.dateItem}
               key={index}
               onClick={() =>
                 !isDateDisabled(date, disabledDates) && handleSelectDate(date)

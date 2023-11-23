@@ -17,9 +17,15 @@ const CarouselContainer = ({
   disabledDates = ["Friday", "Saturday", "Sunday"],
   timeFormat = 24,
   durationStep = 30,
-  onDateChange,
-  onTimeChange,
-  onDurationChange,
+  onDateChange = (date: dayjs.Dayjs) => {
+    return;
+  },
+  onTimeChange = (time: dayjs.Dayjs | null) => {
+    return;
+  },
+  onDurationChange = (duration: number) => {
+    return;
+  },
 }: {
   numCardsToShow?: number;
   cardsToScroll?: number;
@@ -27,9 +33,9 @@ const CarouselContainer = ({
   disabledDates?: string[];
   timeFormat?: number;
   durationStep?: number;
-  onDateChange: (date: dayjs.Dayjs) => void;
-  onTimeChange: (time: dayjs.Dayjs | null) => void;
-  onDurationChange: (duration: number) => void;
+  onDateChange?: (date: dayjs.Dayjs) => void;
+  onTimeChange?: (time: dayjs.Dayjs | null) => void;
+  onDurationChange?: (duration: number) => void;
 }) => {
   const {
     duration,
