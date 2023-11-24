@@ -1,8 +1,7 @@
 import dayjs from "dayjs";
 
 export const generateDatesToShow = (
-  datesCount?: number,
-  dateRange?: [string, string]
+  dateRange?: [string, string] | undefined
 ) => {
   if (dateRange && dateRange.length === 2) {
     const [startDate, endDate] = dateRange;
@@ -17,9 +16,12 @@ export const generateDatesToShow = (
         start = start.add(1, "day");
       }
       return dates;
+    } else {
+      return [...Array(30)].map((_, i) => dayjs().clone().add(i, "day"));
     }
   }
+};
 
-  // Fallback to datesCount if range is not valid
-  return [...Array(datesCount || 30)].map((_, i) => dayjs().add(i, "day"));
+export const isDateDisabled = (date: dayjs.Dayjs, disabledDates: string[]) => {
+  return disabledDates.includes(date.format("dddd"));
 };

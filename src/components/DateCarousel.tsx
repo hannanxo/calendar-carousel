@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import useStyles from "@/hooks/useStyles";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { CarouselRef } from "antd/es/carousel";
-import { isDateDisabled } from "@/utils/FormatUtils";
+import { isDateDisabled } from "@/utils/DatesUtils";
 
 const DateCarousel = ({
   datesToShow,
@@ -15,7 +15,7 @@ const DateCarousel = ({
   cardsToScroll,
   slider,
 }: {
-  datesToShow: dayjs.Dayjs[];
+  datesToShow: dayjs.Dayjs[] | undefined;
   offDays: string[];
   holidays: (date: dayjs.Dayjs) => boolean;
   handleSelectDate: (date: dayjs.Dayjs) => void;
@@ -27,24 +27,21 @@ const DateCarousel = ({
 
   return (
     <div className={styles.dateCarouselContainer}>
-      <LeftOutlined
-        onClick={() => (slider.current ? slider.current.prev() : null)}
-        className={styles.carouselControlLeft}
-      />
       <Carousel
         ref={slider}
         dots={false}
         adaptiveHeight={true}
         infinite={false}
         slidesToShow={numCardsToShow}
-        arrows={false}
+        arrows={true}
         slidesToScroll={cardsToScroll}
         swipeToSlide
       >
-        {datesToShow.map((date, index) => {
+        {datesToShow?.map((date, index) => {
           const isHoliday = holidays(date);
           return (
             <div
+              className={styles.cardContainer}
               key={index}
               onClick={() =>
                 !isDateDisabled(date, offDays) &&
@@ -72,10 +69,23 @@ const DateCarousel = ({
           );
         })}
       </Carousel>
-      <RightOutlined
-        onClick={() => (slider.current ? slider.current.next() : null)}
-        className={styles.carouselControlRight}
-      />
+      <div
+        style={{
+          padding: "8px",
+          // display: "flex",
+          // justifyContent: "center",
+        }}
+      >
+        <LeftOutlined
+          onClick={() => (slider.current ? slider.current.prev() : null)}
+          style={{ marginRight: "8px" }}
+          className={styles.carouselControl}
+        />
+        <RightOutlined
+          onClick={() => (slider.current ? slider.current.next() : null)}
+          className={styles.carouselControl}
+        />
+      </div>
     </div>
   );
 };

@@ -10,7 +10,3 @@ export const formatDate = (date: dayjs.Dayjs) => {
     return "Today";
   else return date.format("MMMM DD, YYYY");
 };
-
-export const isDateDisabled = (date: dayjs.Dayjs, disabledDates: string[]) => {
-  return disabledDates.includes(date.format("dddd"));
-};

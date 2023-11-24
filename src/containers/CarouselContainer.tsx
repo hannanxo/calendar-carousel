@@ -7,15 +7,16 @@ import dayjs from "dayjs";
 import { useRef } from "react";
 import useCarouselData from "@/hooks/useCalendar";
 import { formatDate, formatTime } from "@/utils/FormatUtils";
-import { generateDatesToShow } from "@/utils/GenerateDates";
+import { generateDatesToShow } from "@/utils/DatesUtils";
 
 const { Panel } = Collapse;
 
 const CarouselContainer = ({
   numCardsToShow = 3,
   cardsToScroll = 1,
-  datesCount = 40,
-  dateRange = ["11-23-2023", "01-01-2024"],
+  // dateRange = ["11-23-2023", "01-01-2024"],
+  dateRange = ["", ""],
+
   offDays = ["Friday", "Saturday", "Sunday"],
   holidays = (date: dayjs.Dayjs) => false,
   timeFormat = "hh:mm a",
@@ -32,7 +33,6 @@ const CarouselContainer = ({
 }: {
   numCardsToShow?: number;
   cardsToScroll?: number;
-  datesCount?: number;
   dateRange?: [string, string];
   offDays?: string[];
   holidays?: (date: dayjs.Dayjs) => boolean;
@@ -55,7 +55,7 @@ const CarouselContainer = ({
   const slider = useRef<CarouselRef>(null);
 
   // can also use a dynamic range approach
-  const datesToShow = generateDatesToShow(datesCount, dateRange);
+  const datesToShow = generateDatesToShow(dateRange);
 
   const handleSelectDate = (date: dayjs.Dayjs) => {
     setSelectedDate(date);

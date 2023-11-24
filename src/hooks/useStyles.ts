@@ -22,24 +22,19 @@ const useStyles = createStyles(({ css }) => ({
       padding: 10px;
       background: transparent;
       overflow: hidden;
-      margin-right: 60px;
-      margin-left: 60px;
-
-      @media screen and (max-width: 768px) {
-        margin-right: 0;
-        margin-left: 0;
-      }
     }
 
     .ant-carousel .slick-track {
       display: flex;
       align-items: center;
-      justify-content: center;
       justify-content: space-around;
     }
+  `,
 
-    .slick-slide {
-      width: 650px !important;
+  cardContainer: css`
+    :hover {
+      box-shadow: 1px 8px 8px #f4f4f4;
+      -webkit-transition: box-shadow 0.1s ease-in;
     }
   `,
 
@@ -72,32 +67,19 @@ const useStyles = createStyles(({ css }) => ({
 
   weekdayText: css`
     font-size: 16px;
+    margin-bottom: 10px;
   `,
-
-  carouselControlLeft: css`
-    position: absolute;
-    left: 10px;
-    top: 14%;
-    padding-left: 30px;
-    transform: translateY(-50%);
-    z-index: 2;
-    cursor: pointer;
-    color: #f5222d;
-    @media screen and (max-width: 768px) {
-      display: none !important;
+  setButton: css`
+    button.slick-arrow button.slick-next {
+      background: red;
     }
   `,
-
-  carouselControlRight: css`
-    position: absolute;
-    right: 10px;
-    top: 14%;
-    padding-right: 30px;
-    transform: translateY(-50%);
-    z-index: 2;
-    cursor: pointer;
+  carouselControl: css`
+    display: flex;
+    text-align: center;
+    align-items: center;
     color: #f5222d;
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 500px) {
       display: none !important;
     }
   `,

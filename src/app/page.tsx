@@ -16,13 +16,12 @@ const HomePage: React.FC = () => {
   return (
     <React.Fragment>
       <CarouselContainer
-        dateRange={["12-25-2023", "01-01-2024"]}
-        // onDateChange={(date) =>
-        //   console.log("Date", date.format("MMMM DD, YYYY"))
-        // }
-        // onTimeChange={(time) => console.log("Time", time?.format("hh:mm a"))}
-        // onDurationChange={(duration) => console.log("Duration", duration)}
-        // holidays={checkIfHoliday}
+      // onDateChange={(date) =>
+      //   console.log("Date", date.format("MMMM DD, YYYY"))
+      // }
+      // onTimeChange={(time) => console.log("Time", time?.format("hh:mm a"))}
+      // onDurationChange={(duration) => console.log("Duration", duration)}
+      // holidays={checkIfHoliday}
       />
     </React.Fragment>
   );
