@@ -1,3 +1,8 @@
+/*
+ Integrates all components (DateCarousel, DurationPicker, TimePicker) and uses hooks for state management.
+ It also handles the date generation logic using the utils.
+*/
+
 import DateCarousel from "@/components/DateCarousel";
 import DurationPicker from "@/components/DurationPicker";
 import useStyles from "@/hooks/useStyles";
@@ -11,12 +16,10 @@ import { generateDatesToShow } from "@/utils/DatesUtils";
 
 const { Panel } = Collapse;
 
-const CarouselContainer = ({
+const CalendarContainer = ({
   numCardsToShow = 3,
   cardsToScroll = 1,
-  // dateRange = ["11-23-2023", "01-01-2024"],
   dateRange = ["", ""],
-
   offDays = ["Friday", "Saturday", "Sunday"],
   holidays = (date: dayjs.Dayjs) => false,
   timeFormat = "hh:mm a",
@@ -54,7 +57,6 @@ const CarouselContainer = ({
 
   const slider = useRef<CarouselRef>(null);
 
-  // can also use a dynamic range approach
   const datesToShow = generateDatesToShow(dateRange);
 
   const handleSelectDate = (date: dayjs.Dayjs) => {
@@ -65,7 +67,7 @@ const CarouselContainer = ({
   const handleSelectTime = (time: dayjs.Dayjs | null, timeString: string) => {
     const newTime = time ? dayjs(timeString, timeFormat) : null;
     setSelectedTime(newTime);
-    onTimeChange(newTime); // Calling the callback prop
+    onTimeChange(newTime);
   };
 
   const handleDurationChange = (increment: number) => {
@@ -118,4 +120,4 @@ const CarouselContainer = ({
   );
 };
 
-export default CarouselContainer;
+export default CalendarContainer;

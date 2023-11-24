@@ -1,3 +1,7 @@
+/*
+ Provides essential date generation and disabling functions.
+*/
+
 import dayjs from "dayjs";
 
 export const generateDatesToShow = (
@@ -8,7 +12,6 @@ export const generateDatesToShow = (
     let start = dayjs(startDate);
     let end = dayjs(endDate);
 
-    // Check if both start and end dates are valid
     if (start.isValid() && end.isValid() && start.isBefore(end)) {
       let dates = [];
       while (start.isBefore(end) || start.isSame(end, "day")) {

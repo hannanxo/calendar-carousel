@@ -1,3 +1,7 @@
+/*
+ Manages the states related to date, time, and duration. 
+*/
+
 import { useState } from "react";
 import dayjs from "dayjs";
 

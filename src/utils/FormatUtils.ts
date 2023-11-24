@@ -1,3 +1,6 @@
+/*
+ Provides essential formatting functions.
+*/
 import dayjs from "dayjs";
 
 export const formatTime = (time: dayjs.Dayjs | null, format: string) => {

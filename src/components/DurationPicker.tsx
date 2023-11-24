@@ -1,3 +1,7 @@
+/*
+ Handles the duration selection logic.
+*/
+
 import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 import React from "react";

@@ -1,3 +1,7 @@
+/*
+ This component handles the display of dates and incorporates logic for disabled dates and holidays. 
+*/
+
 import React, { RefObject } from "react";
 import { Carousel } from "antd";
 import dayjs from "dayjs";
@@ -72,8 +76,6 @@ const DateCarousel = ({
       <div
         style={{
           padding: "8px",
-          // display: "flex",
-          // justifyContent: "center",
         }}
       >
         <LeftOutlined
