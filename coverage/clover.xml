@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1700894119894" clover="3.2.0">
+  <project timestamp="1700894119894" name="All files">
+    <metrics statements="62" coveredstatements="52" conditionals="43" coveredconditionals="32" methods="24" coveredmethods="17" elements="129" coveredelements="101" complexity="0" loc="62" ncloc="62" packages="4" files="7" classes="7"/>
+    <package name="components">
+      <metrics statements="12" coveredstatements="9" conditionals="14" coveredconditionals="6" methods="8" coveredmethods="5"/>
+      <file name="DateCarousel.tsx" path="C:\Users\User\Documents\training\frontend\calendar-carousel\src\components\DateCarousel.tsx">
+        <metrics statements="8" coveredstatements="5" conditionals="14" coveredconditionals="6" methods="5" coveredmethods="2"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="30" count="2" type="stmt"/>
+        <line num="32" count="2" type="stmt"/>
+        <line num="45" count="33" type="stmt"/>
+        <line num="46" count="33" type="stmt"/>
+        <line num="51" count="0" type="cond" truecount="0" falsecount="3"/>
+        <line num="82" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="87" count="0" type="cond" truecount="0" falsecount="2"/>
+      </file>
+      <file name="DurationPicker.tsx" path="C:\Users\User\Documents\training\frontend\calendar-carousel\src\components\DurationPicker.tsx">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="18" count="5" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="36" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="containers">
+      <metrics statements="22" coveredstatements="15" conditionals="14" coveredconditionals="11" methods="8" coveredmethods="4"/>
+      <file name="CalendarContainer.tsx" path="C:\Users\User\Documents\training\frontend\calendar-carousel\src\containers\CalendarContainer.tsx">
+        <metrics statements="22" coveredstatements="15" conditionals="14" coveredconditionals="11" methods="8" coveredmethods="4"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="24" count="33" type="cond" truecount="1" falsecount="0"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="34" count="2" type="stmt"/>
+        <line num="55" count="5" type="stmt"/>
+        <line num="56" count="5" type="stmt"/>
+        <line num="58" count="5" type="stmt"/>
+        <line num="60" count="5" type="stmt"/>
+        <line num="62" count="5" type="stmt"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="67" count="5" type="stmt"/>
+        <line num="68" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="69" count="0" type="stmt"/>
+        <line num="70" count="0" type="stmt"/>
+        <line num="73" count="5" type="stmt"/>
+        <line num="74" count="2" type="stmt"/>
+        <line num="75" count="2" type="stmt"/>
+        <line num="76" count="2" type="stmt"/>
+        <line num="79" count="5" type="stmt"/>
+      </file>
+    </package>
+    <package name="hooks">
+      <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <file name="useCalendar.ts" path="C:\Users\User\Documents\training\frontend\calendar-carousel\src\hooks\useCalendar.ts">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="10" count="5" type="stmt"/>
+        <line num="11" count="5" type="stmt"/>
+        <line num="13" count="5" type="stmt"/>
+      </file>
+      <file name="useStyles.ts" path="C:\Users\User\Documents\training\frontend\calendar-carousel\src\hooks\useStyles.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="3" count="6" type="stmt"/>
+      </file>
+    </package>
+    <package name="utils">
+      <metrics statements="22" coveredstatements="22" conditionals="15" coveredconditionals="15" methods="6" coveredmethods="6"/>
+      <file name="DatesUtils.ts" path="C:\Users\User\Documents\training\frontend\calendar-carousel\src\utils\DatesUtils.ts">
+        <metrics statements="15" coveredstatements="15" conditionals="11" coveredconditionals="11" methods="4" coveredmethods="4"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="10" count="11" type="cond" truecount="4" falsecount="0"/>
+        <line num="11" count="10" type="stmt"/>
+        <line num="12" count="10" type="stmt"/>
+        <line num="13" count="10" type="stmt"/>
+        <line num="15" count="10" type="cond" truecount="5" falsecount="0"/>
+        <line num="16" count="3" type="stmt"/>
+        <line num="17" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="18" count="13" type="stmt"/>
+        <line num="19" count="13" type="stmt"/>
+        <line num="21" count="3" type="stmt"/>
+        <line num="23" count="210" type="stmt"/>
+        <line num="26" count="30" type="stmt"/>
+        <line num="30" count="2" type="stmt"/>
+        <line num="31" count="72" type="stmt"/>
+      </file>
+      <file name="FormatUtils.ts" path="C:\Users\User\Documents\training\frontend\calendar-carousel\src\utils\FormatUtils.ts">
+        <metrics statements="7" coveredstatements="7" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="7" count="8" type="cond" truecount="2" falsecount="0"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="12" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="13" count="6" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>

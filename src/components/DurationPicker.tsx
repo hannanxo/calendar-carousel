@@ -18,6 +18,7 @@ const DurationPicker = ({
   return (
     <React.Fragment>
       <Button
+        data-testid="decrement-duration"
         icon={<MinusOutlined />}
         style={{ borderRadius: "20px" }}
         onClick={() => handleDurationChange(-durationStep)}
@@ -29,6 +30,7 @@ const DurationPicker = ({
           .padStart(2, "0")}`}
       </span>
       <Button
+        data-testid="increment-duration"
         icon={<PlusOutlined />}
         style={{ borderRadius: "20px" }}
         onClick={() => handleDurationChange(durationStep)}

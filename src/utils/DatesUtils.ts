@@ -22,6 +22,8 @@ export const generateDatesToShow = (
     } else {
       return [...Array(30)].map((_, i) => dayjs().clone().add(i, "day"));
     }
+  } else {
+    return [...Array(30)].map((_, i) => dayjs().clone().add(i, "day"));
   }
 };
 

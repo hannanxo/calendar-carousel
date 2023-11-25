@@ -10,7 +10,7 @@ import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { CarouselRef } from "antd/es/carousel";
 import { isDateDisabled } from "@/utils/DatesUtils";
 
-const DateCarousel = ({
+const DateCarousel: React.FC<any> = ({
   datesToShow,
   offDays,
   holidays,
