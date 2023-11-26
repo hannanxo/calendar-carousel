@@ -1,4 +1,9 @@
+[![npm](https://img.shields.io/npm/v/calendar-carousel.svg?style=flat-square)](https://www.npmjs.com/package/calendar-carousel)
+
+
 The `calendar-carousel` is a reusable calendar component that gives emphasis on the selected date, time, and duration. Below is a detailed list of how to use it in your project:
+
+
 
 # Table of Contents:
 1- Installation.
