@@ -1,5 +1,5 @@
 import { render, fireEvent } from "@testing-library/react";
-import CalendarContainer from "../src/containers/CalendarContainer";
+import CalendarContainer from "../src/containers/Calendar";
 import dayjs from "dayjs";
 
 describe("CalendarContainer - DateCarousel", () => {

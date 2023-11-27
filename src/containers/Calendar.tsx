@@ -3,20 +3,21 @@
  It also handles the date generation logic using the utils.
 */
 
-import DateCarousel from "@/components/DateCarousel";
-import DurationPicker from "@/components/DurationPicker";
-import useStyles from "@/hooks/useStyles";
+import React from "react";
+import DateCarousel from "../components/DateCarousel";
+import DurationPicker from "../components/DurationPicker";
+import useStyles from "../hooks/useStyles";
 import { Collapse, TimePicker } from "antd";
 import { CarouselRef } from "antd/es/carousel";
 import dayjs from "dayjs";
 import { useRef } from "react";
-import useCarouselData from "@/hooks/useCalendar";
-import { formatDate, formatTime } from "@/utils/FormatUtils";
-import { generateDatesToShow } from "@/utils/DatesUtils";
+import useCarouselData from "../hooks/useCalendar";
+import { formatDate, formatTime } from "../utils/FormatUtils";
+import { generateDatesToShow } from "../utils/DatesUtils";
 
 const { Panel } = Collapse;
 
-const CalendarContainer = ({
+const Calendar = ({
   numCardsToShow = 3,
   cardsToScroll = 1,
   dateRange = ["", ""],
@@ -120,4 +121,4 @@ const CalendarContainer = ({
   );
 };
 
-export default CalendarContainer;
+export default Calendar;

@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "CommonJS",
+    "lib": ["dom", "es2015"],
+    "declaration": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react",
+    "noEmit": false,
+    "baseUrl": ".", // This must be set if you are using 'paths'
+    "paths": {
+      "@/*": ["src/*"] // Adjust according to your path aliases
+    }
+  },
+  "include": [
+    "src/components/**/*",
+    "src/containers/**/*",
+    "src/hooks/**/*",
+    "src/utils/**/*"
+  ],
+  "exclude": ["node_modules", "**/*.test.ts", "**/*.test.tsx"]
+}
