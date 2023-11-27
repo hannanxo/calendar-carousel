@@ -22,7 +22,7 @@ If you just want to use the component in your react project simply install its n
 npm i calendar-carousel
 ```
 
-Now import it in the file you want using `import Calender from "calendar-carousel" `. Now you can call the container and get the default style and behavior of the
+Now import it in the file you want using `import Calendar from "calendar-carousel" `. Now you can call the container and get the default style and behavior of the
 calendar. To know how you can change the behavior using props refer to the props section.
 
 ### 2- For installing the environment that the component was made in:
