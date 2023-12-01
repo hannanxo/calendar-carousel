@@ -1,6 +1,6 @@
 import { createStyles } from "antd-style";
 
-const useStyles = createStyles(({ css }) => ({
+const useStyles = createStyles(({ css, token }) => ({
   styledCollapse: css`
     .ant-collapse-header,
     .ant-collapse-content-box {
@@ -32,6 +32,7 @@ const useStyles = createStyles(({ css }) => ({
   `,
 
   cardContainer: css`
+    max-width: 350px;
     :hover {
       box-shadow: 1px 8px 8px #f4f4f4;
       -webkit-transition: box-shadow 0.1s ease-in;
@@ -74,13 +75,19 @@ const useStyles = createStyles(({ css }) => ({
       background: red;
     }
   `,
-  carouselControl: css`
-    display: flex;
-    text-align: center;
-    align-items: center;
-    color: #f5222d;
-    @media screen and (max-width: 500px) {
-      display: none !important;
+
+  carouselArrows: css`
+    .ant-carousel {
+      .slick-next {
+        &::before {
+          content: "";
+        }
+      }
+      .slick-prev {
+        &::before {
+          content: "";
+        }
+      }
     }
   `,
 }));

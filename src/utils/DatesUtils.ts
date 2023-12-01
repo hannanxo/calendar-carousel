@@ -1,32 +1,30 @@
 /*
- Provides essential date generation and disabling functions.
+ Provides essential date generation function.
 */
 
 import dayjs from "dayjs";
 
-export const generateDatesToShow = (
-  dateRange?: [string, string] | undefined
-) => {
+export const generateDatesToShow = (dateRange?: [dayjs.Dayjs, dayjs.Dayjs]) => {
   if (dateRange && dateRange.length === 2) {
-    const [startDate, endDate] = dateRange;
-    let start = dayjs(startDate);
-    let end = dayjs(endDate);
+    const [start, end] = dateRange;
 
-    if (start.isValid() && end.isValid() && start.isBefore(end)) {
+    // Check if the start date is before the end date
+    if (start.isBefore(end)) {
       let dates = [];
-      while (start.isBefore(end) || start.isSame(end, "day")) {
-        dates.push(start.clone());
-        start = start.add(1, "day");
+      let current = start;
+
+      while (current.isBefore(end) || current.isSame(end, "day")) {
+        dates.push(current.clone());
+        current = current.add(1, "day");
       }
       return dates;
     } else {
-      return [...Array(30)].map((_, i) => dayjs().clone().add(i, "day"));
+      // Fallback if the start date is not before the end date
+      console.warn("Invalid date range: Start date is not before end date.");
+      return [...Array(30)].map((_, i) => dayjs().add(i, "day"));
     }
   } else {
-    return [...Array(30)].map((_, i) => dayjs().clone().add(i, "day"));
+    // Fallback if no date range is provided
+    return [...Array(30)].map((_, i) => dayjs().add(i, "day"));
   }
-};
-
-export const isDateDisabled = (date: dayjs.Dayjs, disabledDates: string[]) => {
-  return disabledDates.includes(date.format("dddd"));
 };

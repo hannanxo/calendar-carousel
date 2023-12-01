@@ -6,9 +6,13 @@ import React, { RefObject } from "react";
 import { Carousel } from "antd";
 import dayjs from "dayjs";
 import useStyles from "@/hooks/useStyles";
-import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { CarouselRef } from "antd/es/carousel";
-import { isDateDisabled } from "@/utils/DatesUtils";
+import { SampleNextArrow, SamplePrevArrow } from "./CarouselArrows";
+
+const settings = {
+  nextArrow: <SampleNextArrow />,
+  prevArrow: <SamplePrevArrow />,
+};
 
 const DateCarousel: React.FC<any> = ({
   datesToShow,
@@ -20,7 +24,7 @@ const DateCarousel: React.FC<any> = ({
   slider,
 }: {
   datesToShow: dayjs.Dayjs[] | undefined;
-  offDays: string[];
+  offDays: (date: dayjs.Dayjs) => boolean;
   holidays: (date: dayjs.Dayjs) => boolean;
   handleSelectDate: (date: dayjs.Dayjs) => void;
   numCardsToShow: number;
@@ -32,62 +36,38 @@ const DateCarousel: React.FC<any> = ({
   return (
     <div className={styles.dateCarouselContainer}>
       <Carousel
+        className={styles.carouselArrows}
         ref={slider}
         dots={false}
         adaptiveHeight={true}
         infinite={false}
         slidesToShow={numCardsToShow}
-        arrows={true}
         slidesToScroll={cardsToScroll}
         swipeToSlide
+        arrows
+        {...settings}
       >
         {datesToShow?.map((date, index) => {
           const isHoliday = holidays(date);
+          const isOffDay = offDays(date);
+          let dateClassName = isOffDay
+            ? styles.dateBlockDisabled
+            : isHoliday
+            ? styles.dateBlockHolidayDisabled
+            : styles.dateBlock;
           return (
             <div
               className={styles.cardContainer}
               key={index}
-              onClick={() =>
-                !isDateDisabled(date, offDays) &&
-                !isHoliday &&
-                handleSelectDate(date)
-              }
+              onClick={() => !isOffDay && !isHoliday && handleSelectDate(date)}
             >
-              {isDateDisabled(date, offDays) && (
-                <div className={styles.dateBlockDisabled}>
-                  {date.format("MMMM")}
-                </div>
-              )}
-              {!isDateDisabled(date, offDays) && !isHoliday && (
-                <div className={styles.dateBlock}>{date.format("MMMM")}</div>
-              )}
-
-              {isHoliday && (
-                <div className={styles.dateBlockHolidayDisabled}>
-                  {date.format("MMMM")}
-                </div>
-              )}
+              <div className={dateClassName}>{date.format("MMMM")}</div>
               <div className={styles.dayText}>{date.format("DD")}</div>
               <div className={styles.weekdayText}>{date.format("dddd")}</div>
             </div>
           );
         })}
       </Carousel>
-      <div
-        style={{
-          padding: "8px",
-        }}
-      >
-        <LeftOutlined
-          onClick={() => (slider.current ? slider.current.prev() : null)}
-          style={{ marginRight: "8px" }}
-          className={styles.carouselControl}
-        />
-        <RightOutlined
-          onClick={() => (slider.current ? slider.current.next() : null)}
-          className={styles.carouselControl}
-        />
-      </div>
     </div>
   );
 };

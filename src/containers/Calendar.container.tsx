@@ -20,8 +20,8 @@ const { Panel } = Collapse;
 const Calendar = ({
   numCardsToShow = 3,
   cardsToScroll = 1,
-  dateRange = ["", ""],
-  offDays = ["Friday", "Saturday", "Sunday"],
+  dateRange = [dayjs(), dayjs().add(29, "day")],
+  offDays = (date: dayjs.Dayjs) => false,
   holidays = (date: dayjs.Dayjs) => false,
   timeFormat = "hh:mm a",
   durationStep = 30,
@@ -37,8 +37,8 @@ const Calendar = ({
 }: {
   numCardsToShow?: number;
   cardsToScroll?: number;
-  dateRange?: [string, string];
-  offDays?: string[];
+  dateRange?: [dayjs.Dayjs, dayjs.Dayjs];
+  offDays?: (date: dayjs.Dayjs) => boolean;
   holidays?: (date: dayjs.Dayjs) => boolean;
   timeFormat?: string;
   durationStep?: number;
