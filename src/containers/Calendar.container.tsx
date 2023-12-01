@@ -11,7 +11,7 @@ import { Collapse, TimePicker } from "antd";
 import { CarouselRef } from "antd/es/carousel";
 import dayjs from "dayjs";
 import { useRef } from "react";
-import useCarouselData from "../hooks/useCalendar";
+import useCarouselData from "../hooks/useCalendarData";
 import { formatDate, formatTime } from "../utils/FormatUtils";
 import { generateDatesToShow } from "../utils/DatesUtils";
 
@@ -48,34 +48,17 @@ const Calendar = ({
 }) => {
   const {
     duration,
-    setDuration,
+    handleDurationChange,
     selectedDate,
-    setSelectedDate,
+    handleSelectDate,
     selectedTime,
-    setSelectedTime,
-  } = useCarouselData();
+    handleSelectTime,
+  } = useCarouselData(onDateChange, onTimeChange, timeFormat, onDurationChange);
   const { styles } = useStyles();
 
   const slider = useRef<CarouselRef>(null);
 
   const datesToShow = generateDatesToShow(dateRange);
-
-  const handleSelectDate = (date: dayjs.Dayjs) => {
-    setSelectedDate(date);
-    onDateChange(date);
-  };
-
-  const handleSelectTime = (time: dayjs.Dayjs | null, timeString: string) => {
-    const newTime = time ? dayjs(timeString, timeFormat) : null;
-    setSelectedTime(newTime);
-    onTimeChange(newTime);
-  };
-
-  const handleDurationChange = (increment: number) => {
-    const newDuration = Math.max(0, duration + increment);
-    setDuration(newDuration);
-    onDurationChange(newDuration);
-  };
 
   return (
     <Collapse
