@@ -4,6 +4,8 @@ const useStyles = createStyles(({ css, token }) => ({
   styledCollapse: css`
     .ant-collapse-header,
     .ant-collapse-content-box {
+      display: flex;
+      justify-content: center;
       padding: 0;
     }
 
@@ -17,6 +19,16 @@ const useStyles = createStyles(({ css, token }) => ({
   `,
 
   dateCarouselContainer: css`
+    max-width: 1200px;
+
+    @media screen and (max-width: 1400px) {
+      max-width: 700px;
+    }
+
+    @media screen and (max-width: 800px) {
+      max-width: 330px;
+    }
+
     .ant-carousel .slick-slide {
       text-align: center;
       padding: 10px;
@@ -31,34 +43,37 @@ const useStyles = createStyles(({ css, token }) => ({
     }
   `,
 
-  cardContainer: css`
-    max-width: 350px;
+  cardEnabledContainer: css`
     :hover {
-      box-shadow: 1px 8px 8px #f4f4f4;
-      -webkit-transition: box-shadow 0.1s ease-in;
+      // box-shadow: 1px 3px 8px ${token.colorPrimary};
+      cursor: pointer;
+      transform: scale(1.02);
+      // -webkit-transition: box-shadow 0.1s ease-in;
     }
   `,
+  cardDisabledContainer: css``,
+  cardHolidayContainer: css``,
 
   dateBlock: css`
     padding: 4px 10px;
     margin-bottom: 8px;
-    background: #f5222d;
-    color: #fff;
-    border-radius: 4px;
+    background: ${token.colorPrimary || "red"};
+    color: ${token.colorText || "#fff"};
+    border-radius: ${token.borderRadius || "4px"};
   `,
 
   dateBlockDisabled: css`
     padding: 4px 10px;
     margin-bottom: 8px;
-    background: grey;
-    color: #fff;
+    background: ${token.colorError || "grey"};
+    color: ${token.colorErrorText || "#fff"};
     border-radius: 4px;
   `,
   dateBlockHolidayDisabled: css`
     padding: 4px 10px;
     margin-bottom: 8px;
-    background: green;
-    color: #fff;
+    background: ${token.colorWarning || "green"};
+    color: ${token.colorWarningText || "#fff"};
     border-radius: 4px;
   `,
   dayText: css`
@@ -70,9 +85,10 @@ const useStyles = createStyles(({ css, token }) => ({
     font-size: 16px;
     margin-bottom: 10px;
   `,
-  setButton: css`
-    button.slick-arrow button.slick-next {
-      background: red;
+
+  timePicker: css`
+    .ant-picker-now-btn {
+      background-color: green !important;
     }
   `,
 

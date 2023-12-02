@@ -1,8 +1,12 @@
 "use client";
 import StyledComponentsRegistry from "@/lib/AntdRegistry";
 import React from "react";
+import * as darkTheme from "../ant-tokens/dark.json";
+import * as lightTheme from "../ant-tokens/light.json";
+import { ConfigProvider, theme } from "antd";
 
 const RootLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
+  const token = darkTheme;
   return (
     <html lang="en">
       <head>
@@ -26,8 +30,25 @@ const RootLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
           href="/images/favicon-16x16.png"
         />
       </head>
-      <body>
-        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+      <body style={{ padding: 0, margin: 0 }}>
+        <StyledComponentsRegistry>
+          <ConfigProvider
+            theme={{
+              components: {
+                Collapse: {
+                  headerBg: token === darkTheme ? "black" : "",
+                },
+                DatePicker: {
+                  cellHoverBg: token.colorPrimary,
+                },
+              },
+              algorithm: token ? theme.darkAlgorithm : theme.defaultAlgorithm,
+              token,
+            }}
+          >
+            {children}
+          </ConfigProvider>
+        </StyledComponentsRegistry>
       </body>
     </html>
   );

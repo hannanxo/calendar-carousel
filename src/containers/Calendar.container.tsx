@@ -8,6 +8,7 @@ import DateCarousel from "../components/DateCarousel";
 import DurationPicker from "../components/DurationPicker";
 import useStyles from "../hooks/useStyles";
 import { Collapse, TimePicker } from "antd";
+import type { CollapseProps } from "antd";
 import { CarouselRef } from "antd/es/carousel";
 import dayjs from "dayjs";
 import { useRef } from "react";
@@ -15,10 +16,8 @@ import useCarouselData from "../hooks/useCalendarData";
 import { formatDate, formatTime } from "../utils/FormatUtils";
 import { generateDatesToShow } from "../utils/DatesUtils";
 
-const { Panel } = Collapse;
-
 const Calendar = ({
-  numCardsToShow = 3,
+  numCardsToShow = 4,
   cardsToScroll = 1,
   dateRange = [dayjs(), dayjs().add(29, "day")],
   offDays = (date: dayjs.Dayjs) => false,
@@ -59,16 +58,12 @@ const Calendar = ({
   const slider = useRef<CarouselRef>(null);
 
   const datesToShow = generateDatesToShow(dateRange);
-
-  return (
-    <Collapse
-      className={styles.styledCollapse}
-      bordered={false}
-      defaultActiveKey={["0"]}
-      ghost
-      expandIconPosition="end"
-    >
-      <Panel header="Date" key="1" extra={formatDate(selectedDate)}>
+  const items: CollapseProps["items"] = [
+    {
+      key: "1",
+      label: "Date",
+      extra: formatDate(selectedDate),
+      children: (
         <DateCarousel
           datesToShow={datesToShow}
           offDays={offDays}
@@ -78,29 +73,45 @@ const Calendar = ({
           cardsToScroll={cardsToScroll}
           slider={slider}
         />
-      </Panel>
-      <Panel header="Time" key="2" extra={formatTime(selectedTime, timeFormat)}>
+      ),
+    },
+    {
+      key: "2",
+      label: "Time",
+      extra: formatTime(selectedTime, timeFormat),
+      children: (
         <TimePicker
+          className={styles.timePicker}
+          placement="bottomRight"
+          showNow={false}
           format={timeFormat}
           style={{ minWidth: "100%", maxWidth: "100%" }}
           value={selectedTime ? dayjs(selectedTime, timeFormat) : null}
           onChange={handleSelectTime}
         />
-      </Panel>
-      <Panel
-        header="Duration"
-        showArrow={false}
-        collapsible="icon"
-        extra={
-          <DurationPicker
-            duration={duration}
-            durationStep={durationStep}
-            handleDurationChange={handleDurationChange}
-          />
-        }
-        key="3"
-      />
-    </Collapse>
+      ),
+    },
+    {
+      key: "3",
+      label: "Duration",
+      showArrow: false,
+      collapsible: "icon",
+      extra: (
+        <DurationPicker
+          duration={duration}
+          durationStep={durationStep}
+          handleDurationChange={handleDurationChange}
+        />
+      ),
+    },
+  ];
+
+  return (
+    <Collapse
+      bordered={false}
+      className={styles.styledCollapse}
+      items={items}
+    />
   );
 };
 

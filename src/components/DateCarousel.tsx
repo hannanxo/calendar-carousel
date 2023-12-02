@@ -55,9 +55,13 @@ const DateCarousel: React.FC<any> = ({
             : isHoliday
             ? styles.dateBlockHolidayDisabled
             : styles.dateBlock;
+
+          let cardClassName =
+            !isOffDay && !isHoliday ? styles.cardEnabledContainer : "";
+
           return (
             <div
-              className={styles.cardContainer}
+              // className={cardClassName}
               key={index}
               onClick={() => !isOffDay && !isHoliday && handleSelectDate(date)}
             >

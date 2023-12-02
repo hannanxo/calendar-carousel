@@ -3,8 +3,10 @@
 */
 
 import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
-import { Button } from "antd";
+import { Button, Typography } from "antd";
 import React from "react";
+
+const { Text } = Typography;
 
 const DurationPicker = ({
   duration,
@@ -23,12 +25,12 @@ const DurationPicker = ({
         style={{ borderRadius: "20px" }}
         onClick={() => handleDurationChange(-durationStep)}
       />
-      <span style={{ margin: "20px" }}>
+      <Text style={{ margin: "20px" }}>
         {" "}
         {`${Math.floor(duration / 60)}:${(duration % 60)
           .toString()
           .padStart(2, "0")}`}
-      </span>
+      </Text>
       <Button
         data-testid="increment-duration"
         icon={<PlusOutlined />}

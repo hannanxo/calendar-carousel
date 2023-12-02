@@ -19,18 +19,20 @@ const HomePage: React.FC = () => {
 
   return (
     <React.Fragment>
-      <Calendar
-        dateRange={[dayjs("01-01-2023"), dayjs("01-30-2023")]}
-        offDays={customOffDays}
-        holidays={checkIfHoliday}
-        onDateChange={(date) =>
-          console.log("Selected Date:", date.format("MMMM DD, YYYY"))
-        }
-        onTimeChange={(time) =>
-          console.log("Selected Time:", time?.format("hh:mm a"))
-        }
-        onDurationChange={(duration) => console.log("Duration:", duration)}
-      />
+      <div style={{ height: "100vh", margin: 0, padding: 0 }}>
+        <Calendar
+          dateRange={[dayjs("01-01-2023"), dayjs("01-30-2023")]}
+          offDays={customOffDays}
+          holidays={checkIfHoliday}
+          onDateChange={(date) =>
+            console.log("Selected Date:", date.format("MMMM DD, YYYY"))
+          }
+          onTimeChange={(time) =>
+            console.log("Selected Time:", time?.format("hh:mm a"))
+          }
+          onDurationChange={(duration) => console.log("Duration:", duration)}
+        />
+      </div>
     </React.Fragment>
   );
 };
