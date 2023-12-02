@@ -4,10 +4,10 @@ import dayjs from "dayjs";
 
 describe("CalendarContainer - DateCarousel", () => {
   it("renders the specified date range after expanding the panel", () => {
-    const startDate = "01-01-2023";
-    const endDate = "01-03-2023";
     const { getByText } = render(
-      <CalendarContainer dateRange={[startDate, endDate]} />
+      <CalendarContainer
+        dateRange={[dayjs("01-01-2023"), dayjs("01-30-2023")]}
+      />
     );
 
     const datePanelHeader = getByText("Date");
