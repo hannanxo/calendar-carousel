@@ -6,7 +6,6 @@ const useStyles = createStyles(({ css, token }) => ({
     .ant-collapse-content-box {
       display: flex;
       justify-content: center;
-      padding: 0;
     }
 
     .ant-picker {

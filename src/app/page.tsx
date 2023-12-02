@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Calendar from "../containers/Calendar.container";
+import Calendar from "../containers/Calendar";
 import dayjs from "dayjs";
 
 const HomePage: React.FC = () => {

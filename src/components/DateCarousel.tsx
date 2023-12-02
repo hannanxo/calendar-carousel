@@ -5,7 +5,7 @@
 import React, { RefObject } from "react";
 import { Carousel } from "antd";
 import dayjs from "dayjs";
-import useStyles from "@/hooks/useStyles";
+import useStyles from "../hooks/useStyles";
 import { CarouselRef } from "antd/es/carousel";
 import { SampleNextArrow, SamplePrevArrow } from "./CarouselArrows";
 

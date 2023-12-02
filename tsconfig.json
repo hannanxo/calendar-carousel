@@ -2,7 +2,10 @@
   "compilerOptions": {
     "target": "es5",
     "module": "CommonJS",
-    "lib": ["dom", "es2015"],
+    "lib": [
+      "dom",
+      "es2015"
+    ],
     "declaration": true,
     "outDir": "./dist",
     "rootDir": "./src",
@@ -10,18 +13,33 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "jsx": "react",
+    "jsx": "preserve",
     "noEmit": false,
     "baseUrl": ".", // This must be set if you are using 'paths'
     "paths": {
-      "@/*": ["src/*"] // Adjust according to your path aliases
-    }
+      "@/*": [
+        "src/*"
+      ] // Adjust according to your path aliases
+    },
+    "allowJs": true,
+    "incremental": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
     "src/components/**/*",
     "src/containers/**/*",
     "src/hooks/**/*",
-    "src/utils/**/*"
+    "src/utils/**/*",
+    ".next/types/**/*.ts"
   ],
-  "exclude": ["node_modules", "**/*.test.ts", "**/*.test.tsx"]
+  "exclude": [
+    "node_modules"
+  ]
 }
