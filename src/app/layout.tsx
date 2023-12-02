@@ -6,7 +6,7 @@ import * as lightTheme from "../ant-tokens/light.json";
 import { ConfigProvider, theme } from "antd";
 
 const RootLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
-  const token = darkTheme;
+  const token = lightTheme;
   return (
     <html lang="en">
       <head>
@@ -42,7 +42,9 @@ const RootLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
                   cellHoverBg: token.colorPrimary,
                 },
               },
-              algorithm: token ? theme.darkAlgorithm : theme.defaultAlgorithm,
+              algorithm: token
+                ? theme.defaultAlgorithm
+                : theme.defaultAlgorithm,
               token,
             }}
           >

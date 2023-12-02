@@ -61,7 +61,7 @@ const DateCarousel: React.FC<any> = ({
 
           return (
             <div
-              // className={cardClassName}
+              className={cardClassName}
               key={index}
               onClick={() => !isOffDay && !isHoliday && handleSelectDate(date)}
             >

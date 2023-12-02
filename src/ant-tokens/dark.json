@@ -1,10 +1,10 @@
 {
   "colorPrimary": "red",
+  "colorPrimaryText": "white",
   "colorWarning": "grey",
   "colorWarningText": "black",
   "colorError": "yellow",
   "colorErrorText": "green",
   "borderRadius": 0,
-  "controlItemBgActive": "",
-  "screenXLMin": 1400
+  "controlItemBgActive": "#f4f4f4"
 }

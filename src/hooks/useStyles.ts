@@ -2,7 +2,7 @@ import { createStyles } from "antd-style";
 
 const useStyles = createStyles(({ css, token }) => ({
   styledCollapse: css`
-    .ant-collapse-header,
+    > .ant-collapse-item .ant-collapse-header,
     .ant-collapse-content-box {
       display: flex;
       justify-content: center;
@@ -45,20 +45,16 @@ const useStyles = createStyles(({ css, token }) => ({
 
   cardEnabledContainer: css`
     :hover {
-      // box-shadow: 1px 3px 8px ${token.colorPrimary};
       cursor: pointer;
       transform: scale(1.02);
-      // -webkit-transition: box-shadow 0.1s ease-in;
     }
   `,
-  cardDisabledContainer: css``,
-  cardHolidayContainer: css``,
 
   dateBlock: css`
     padding: 4px 10px;
     margin-bottom: 8px;
     background: ${token.colorPrimary || "red"};
-    color: ${token.colorText || "#fff"};
+    color: ${token.colorPrimaryText || "#fff"};
     border-radius: ${token.borderRadius || "4px"};
   `,
 

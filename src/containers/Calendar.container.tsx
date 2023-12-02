@@ -17,7 +17,7 @@ import { formatDate, formatTime } from "../utils/FormatUtils";
 import { generateDatesToShow } from "../utils/DatesUtils";
 
 const Calendar = ({
-  numCardsToShow = 4,
+  numCardsToShow = 3,
   cardsToScroll = 1,
   dateRange = [dayjs(), dayjs().add(29, "day")],
   offDays = (date: dayjs.Dayjs) => false,
