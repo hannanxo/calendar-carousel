@@ -1,4 +1,7 @@
-The `calendar-carousel` is a reusable calendar component that gives emphasis on the selected date, time, and duration. Below is a detailed list of how to use it in your project:
+The `calendar-carousel` is a reusable calendar component that emphasizes the selected date, time, and duration. Below is a detailed list of how to use it in your project:
+
+[![npm](https://img.shields.io/npm/v/calendar-carousel.svg?style=flat-square)](https://www.npmjs.com/package/calendar-carousel)
+
 
 # Table of Contents:
 
@@ -17,7 +20,7 @@ npm i calendar-carousel
 ```
 
 Now import it in the file you want using `import Calendar from "calendar-carousel" `. Now you can call the container and get the default style and behavior of the
-calendar. To know how you can change the behavior using props refer to the API section.
+calendar. To know how to change the behavior using props refer to the API section.
 
 ## API Reference:
 
@@ -27,7 +30,7 @@ The `Calendar` component provides a flexible and customizable calendar view with
 | ------------------ | ------------------------------------- | ----------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `numCardsToShow`   | `number`                              | `3`                                 | Number of date cards to show in the carousel at a time.                                                                                                   |
 | `cardsToScroll`    | `number`                              | `1`                                 | Number of date cards to scroll in one swipe/scroll action.                                                                                                |
-| `dateRange`        | `[dayjs.Dayjs, dayjs.Dayjs]`          | `[dayjs(), dayjs().add(29, "day")]` | Date range for the calendar to show. Format should be a valid dayjs date for the start range and end range. If not provided, defaults to today + 29 days. |
+| `dateRange`        | `[dayjs.Dayjs, dayjs.Dayjs]`          | `[dayjs(), dayjs().add(29, "day")]` | Date range for the calendar to show. Format should be a valid dayjs date for the start and end ranges. If not provided, defaults to today + 29 days. |
 | `offDays`          | `(date: dayjs.Dayjs)`                 | `() => false`                       | A user provided custom function to determine if a specific date is a off day and should be disabled.                                                      |
 | `holidays`         | `(date: dayjs.Dayjs) => boolean`      | `() => false`                       | A user provided custom function to determine if a specific date is a holiday and should be disabled.                                                      |
 | `timeFormat`       | `string`                              | `"hh:mm a"`                         | Format for the time picker. Can be `"hh:mm a"` for 12-hour format or `"HH:mm"` for 24-hour format.                                                        |
